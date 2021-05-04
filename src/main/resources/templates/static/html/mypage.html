@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <style>
+
+        footer {
+            font-family: Courier, "Courier New", "Andale Mono", monospace;
+            color: #0c0c0c;
+            font-size: 13px;
+            background-color: #e8e6e6;
+        }
+
+        p {
+            margin: 20px 0px;
+        }
+
+
+        span {
+            color: #fff9f9;
+            font-size: 32px;
+            text-align: left;
+            margin-top: 20px;
+            font-weight: 100;
+            letter-spacing: -1px;
+        }
+        canvas{border: 1px solid gray;border-radius: 3px;}
+
+        /*.card-body {*/
+
+        /*    background-image: url("/images/company.JPG");*/
+        /*    height: 100%;*/
+        /*    background-repeat: no-repeat;*/
+        /*    background-size: cover;*/
+
+        /*}*/
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .colbar {
+            background-color: white;
+        }
+
+        .button {
+            margin-top: 15px;
+            background-color: #44488d;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        h3 {
+            color: #44488d;
+            font-family: arial, sans-serif;
+            font-weight: bold;
+        }
+
+        span.system {
+            color: #bbbff3;
+            font-family: arial, sans-serif;
+            font-weight: bold;
+        }
+
+        span.sessionName {
+            color: #0e1012;
+            font-weight: bold;
+            font-size: 25px;
+
+
+        }
+
+        .card-text{
+            font-size: 13px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#add-usr-modal").load("./modal/insert.html");   // 사용자 등록
+            $("#edit-usr-modal").load("./modal/user/editUsrModal.html"); // 사용자 정보수정
+            $("#del-usr-modal").load("./modal/user/delUsrModal.html");   // 사용자 정보삭제
+        });
+    </script>
+
+    <script src="/js/mycanvas.js"></script>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+    <a class="navbar-brand m-2" href='/'>
+        <img src="/images/n_logo.png" width="40" height="40">
+    </a>
+
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">NEIGHBOR SYSTEM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/notice">공지사항</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        커뮤니티
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/boardCompany">사내 게시판</a></li>
+                        <li><a class="dropdown-item" href="/circles"> 동아리 </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/request">건의 사항</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/mypage"> 마이페이지 </a>
+                </li>
+
+            </ul>
+            <form class="d-flex">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<!-- 위에 목록 -->
+<!--세로 목록 -->
+
+<div class="row">
+    <div class="container col-1 colbar">
+        <div class="row">
+            <div class="col">
+                <p> 마이페이지 </p>
+                <ul class="nav flex-column">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/mypage"> 내 정보 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/projectManage">프로젝트 관리 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/myboard">할일관리 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/change"> 정보변경 </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 컨테츠  -->
+
+    <br><br>
+    <div class="container col-10">
+
+        <br>
+        <div class="row">
+
+            <!--콘테츠 -->
+            <header align="center">
+                <h3>NEIGHBOR <span class="system">SYSTEM</span></h3>
+            </header>
+            <br> <br><br>
+
+            <div class="row">
+
+
+                <div class="container col-auto col-lg-6">
+
+                    <div class="card" style="width: 35rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Monthly scheduler </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"> 네이버시스템에 오신걸 환영합니다. </h6>
+                            <p class="card-text"> <span class ="sessionName" th:text="${session.principal.getName()}"></span> 님 네이버시스템 스케줄러를 활용해 알찬 하루일과를 계획해보세요.😀
+                                &nbsp; &nbsp; &nbsp; &nbsp;오늘 날씨는 춥습니다. 따뜻한 차한잔 마시며 근무해 보아요. </p>
+
+                        </div>
+                    </div>
+
+<br><br>
+
+
+                        <form class="row col-lg-10">
+                            <div class="col-auto">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail2"  value="프로젝트 수행 시간">
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control" placeholder="(분)" id = "projectTime">
+                            </div>
+
+                            <div class="col-auto">
+                                <input type="text" readonly class="form-control-plaintext"  value="스터디 시간">
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control"  placeholder="(분)" id = "studyTime">
+                            </div>
+
+                            <div class="col-auto">
+                                <input type="text" readonly class="form-control-plaintext"  value="휴식 시간">
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" class="form-control"  placeholder="(분)" id = "playTime">
+                                <br>
+                            </div>
+
+                            <br>
+                             <hr>
+
+                            <div class="col-auto">
+                                <input type="button"  class="btn btn-primary mb-3" onclick='newDraw(projectTime , studyTime , playTime)' value =" 확인하기 "></input>
+                            </div>
+                        </form>
+
+
+
+                </div>
+
+   <!-- 오른쪽 화면 -->
+                <div class="col-lg-6">
+
+                  <div class ="row">
+
+
+                      <div class="card  col-auto  " style="width: 18rem;">
+                          <div class="card-body">
+                              <iframe height="230" src="https://www.google.com/calendar/embed?src=equria%40gmail.com&ctz=Asia/Seoul" frameborder="0" width="260" scrolling="no"></iframe>
+                          </div>
+                      </div>
+
+
+                      <div class="card  col-auto  " style="width: 18rem;">
+                          <div class="card-body">
+
+                              <!--s -->
+
+                              <canvas width='200' height='200' id='canvas'></canvas>  <!-- https://lts0606.tistory.com/297?category=752027 -->
+                              <!--s -->
+
+                          </div>
+                      </div>
+
+
+                      <div class="card  col-auto  " style="width: 36rem;">
+                          <div class="card-body">
+                              <h5 class="card-title">네이버 시스템 바로가기 </h5>
+                              <h6 class="card-subtitle mb-2 text-muted"> 글자를 누르면 화면으로 이동됩니다. </h6>
+                              <br>
+                              <a href="http://www.neighbor21.co.kr/" class="card-link">🖥 네이버 시스템 홈페이지 바로가기</a> <br>
+                              <a href="http://solweb.neighbor21.co.kr/" class="card-link">📅 sol web 바로가기</a> <br>
+                              <a href = "http://webmail.neighbor21.co.kr/ngw/app/#/sign"> 📧 네이버시스템 메일 바로가기</a>
+                              <br>
+
+
+                          </div>
+                      </div>
+                  </div>
+
+
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+<script>
+
+
+
+    function newDraw( projectTime ,  studyTime ,  playTime ){
+
+        var num3 = document.getElementById('projectTime').value;
+        var num2 = document.getElementById('studyTime').value;
+        var num1 = document.getElementById('playTime').value;
+
+        num1 *= 1;
+        num2 *= 1;
+        num3 *= 1;
+
+
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        var width = canvas.clientWidth;
+        var height = canvas.clientHeight;
+
+
+
+        value = [
+            {number : num1 , text : '휴식시간'},
+            {number : num2, text : '스터디'},
+            {number : num3, text : '프로젝트'},
+            /* {number : 1440, text : '전라도'},
+             {number : 1160, text : '경상도'}*/
+        ];
+
+
+        var degree = 360;
+        var radius = width * 0.7 / 2;  //반지름 동적 부여
+
+        if(radius > height * 0.7 / 2){  //캔버스의 넓이와 높이를 고려하여 최소크기 적용
+            radius = height * 0.7 / 2;
+        }
+
+        const colorArray = ['#f5444e', '#4bbfbc', '#fcb362','#949fb0'];  //색깔배열(지금은 6개..)  //,'#949fb0','#c4c24a','#6faab0'
+
+        var sum = 0;
+        value.forEach( arg=> sum+= arg.number);
+
+        var conv_array = value.slice().map((data)=>{  //각도가 들어있는 배열
+            var rate = data.number / sum;
+            var myDegree = degree * rate;
+            return myDegree;
+        });
+
+        degree = 0;
+        var event_array = value.slice().map( arg=> []);  //이벤트(각도 범위가 있는)용 배열
+
+
+        var current = -1;  //현재 동작중 인덱스
+        var zero = 0;   //각(degree)에 대해서 증가하는 값
+
+        //최초 로딩 이벤트(값 1개씩 점차 증가하며 그리는함수)   -> 계속해서 덮어씌우기를 하므로 가운데가 깔끔하지 않다.(나중에 수정하여보자.)
+        var clr = setInterval(() => {
+            for(var i=0;i < conv_array.length;i++){
+                var item = conv_array[i];
+                if(current == -1|| current == i){
+                    current = i;
+                    if(zero < item){ //비교
+                        if(i == 0){
+                            arcMaker(radius, 0, zero, colorArray[i]);
+                        } else {
+                            arcMaker(radius, degree, degree+zero, colorArray[i]);
+                        }
+                        zero+=3;
+                    } else {
+                        current = i+1;
+                        zero = 0;
+                        if(i != 0){
+                            arcMaker(radius, degree, degree + item, colorArray[i]);
+                            event_array[i] = [degree, degree+item];
+                            degree =  degree + item;
+                        } else {
+                            arcMaker(radius, 0, item, colorArray[i]);
+                            degree = item;
+                            event_array[i] = [0, degree];
+                        }
+                    }
+                } else if (current == conv_array.length){
+                    clearInterval(clr);
+                    makeText(-1);
+                }
+            }
+        }, 1);
+
+        //그리는 기능 분리(같은 내용이 계속 나오므로 분리)
+        function arcMaker(radius, begin, end, color){
+            ctx.save();
+            ctx.lineJoin = 'round'; //선이만나 꺾이는 부분때문에 부여(삐져나오는 현상 방지)
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(width/2, height/2);
+            ctx.arc(width/2, height/2, radius, (Math.PI/180)*begin, (Math.PI/180)* end , false);
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.strokeStyle = 'white';
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+            middelMaker();  //가운데 원형그리기 함수 추가
+        }
+
+        //마우스 움직임 이벤트 리스너
+        var drawed = false;
+        canvas.addEventListener('mousemove', function (event) {
+            var x1 = event.clientX - canvas.offsetLeft;
+            var y1 = event.clientY - canvas.offsetTop;
+            var inn = isInsideArc(x1, y1);
+            if(inn.index > -1){  //대상이 맞으면
+                drawed = true;
+                hoverCanvas(inn.index);
+                makeText(inn.index);
+            } else {  //대상이 아니면
+                if(drawed){  //대상이였다가 대상이 이제 아니면
+                    hoverCanvas(-1);
+                    makeText(-1);
+                }
+                drawed = false;
+            }
+        });
+
+        //내부 + 범위에 들어온지 확인하는 함수
+        function isInsideArc(x1, y1){
+            var result1 = false;
+            var result2 = false;
+            var index = -1;
+            var circle_len = radius;
+            var x = width/2 - x1;
+            var y = height/2 - y1;
+            var my_len = Math.sqrt(Math.abs(x * x) + Math.abs(y * y));  //삼각함수
+            if(circle_len >= my_len){
+                result1 = true;
+            }
+            var rad = Math.atan2(y, x);
+            rad = (rad*180)/Math.PI;  //음수가 나온다
+            rad += 180;  //캔버스의 각도로 변경
+            if(result1){
+                event_array.forEach( (arr,idx) => {   //각도 범위에 해당하는지 확인
+                    if( rad >= arr[0] && rad <= arr[1]){
+                        result2 = true;
+                        index = idx;
+                    }
+                });
+            }
+            return {result1:result1, result2:result2 ,index:index, degree : rad};
+        }
+
+
+        //마우스 오버효과
+        function hoverCanvas(index){
+            ctx.clearRect(0,0,width, height);
+            for (var i = 0; i < conv_array.length; i++) {
+                var item = conv_array[i];
+                var innRadius = radius;
+                if(index == i){
+                    innRadius = radius * 1.1;  //대상이 맞으면 1.1배 크게 키운다.
+                }
+                if (i == 0) {
+                    arcMaker(innRadius, 0, item, colorArray[i])
+                    degree = item;
+                } else {
+                    arcMaker(innRadius, degree, degree + item, colorArray[i])
+                    degree = degree + item;
+                }
+            }
+        }
+
+
+        //도(degree)를 라디안(radian)으로 바꾸는 함수
+        function degreesToRadians(degrees) {
+            const pi = Math.PI;
+            return degrees * (pi / 180);
+        }
+
+        //텍스트함수
+        function makeText(index){
+            event_array.forEach((itm, idx) => {
+                var half = (itm[1] - itm[0]) / 2;
+                var degg = itm[0] + half;
+                var xx = Math.cos(degreesToRadians(degg)) * radius * 0.7 + width / 2;
+                var yy = Math.sin(degreesToRadians(degg)) * radius * 0.7 + height / 2;
+
+                var txt = value[idx].text + '';
+                var minus = ctx.measureText(txt).width / 2;  //텍스트 절반길이
+                ctx.save();
+                if(index == idx){
+                    ctx.font = "normal bold 18px sans-serif";
+                    ctx.fillStyle = 'blue';
+                } else {
+                    ctx.font = "normal 14px sans-serif";
+                    ctx.fillStyle = 'white';
+                }
+                ctx.fillText(txt, xx - minus, yy);
+                var txt2 = value[idx].number;
+                ctx.fillText(txt2, xx - ctx.measureText(txt2).width / 3, yy + 16);
+                ctx.restore();
+            });
+        }
+
+        //중앙 구멍(원)을 만드는 함수
+        function middelMaker(){
+            ctx.save();
+            ctx.fillStyle='white';
+            ctx.strokeStyle='white';
+            ctx.lineJoin = 'round'; //선이만나 꺾이는 부분때문에 부여(삐져나오는 현상 방지)
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(width/2, height/2);
+            ctx.arc(width/2, height/2, radius/3, (Math.PI/180)*0, (Math.PI/180)* 360 , false);
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
+            ctx.restore();
+
+            var total = 0;
+            value.forEach( (arg)=> total+=arg.number);
+            var minus = ctx.measureText(total).width;
+            ctx.save();
+            ctx.font = "normal 20px sans-serif";
+            ctx.fillStyle = '#656565';
+            ctx.fillText("Total", width/2 - ctx.measureText("Total").width/2, height/2);
+            ctx.fillText(total, width/2 - minus, height/2 * 1.1);
+            ctx.restore();
+        }
+    }
+
+</script>
+
+<br>
+<br>
+<br>
+<footer>
+    <div style="margin-bottom: 0">
+        <br>
+        Copyright © 2015 Neighbor System.  서울특별시 송파구 중대로 135 IT벤처타워 동관 16층  TEL. 02-6258-1500 FAX.02-6258-0145  created by yoonji
+
+    </div>
+
+</footer>
+
+<script type="text/javascript">
+
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+</body>
+</html>

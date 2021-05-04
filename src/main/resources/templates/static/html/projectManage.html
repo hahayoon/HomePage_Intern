@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <style>
+
+        .search__sub__title {
+            background-color: #d9d8d8;
+
+        }
+        thead{
+            background-color: #e6e8ea;
+        }
+
+        footer {
+            font-family: Courier, "Courier New", "Andale Mono", monospace;
+            color: #0c0c0c;
+            font-size: 13px;
+            background-color: #e8e6e6;
+        }
+
+        p {
+            margin: 20px 0px;
+        }
+
+
+
+        span {
+            color: #efebeb;
+            font-size: 32px;
+            text-align: left;
+            margin-top: 20px;
+            font-weight: 100;
+            letter-spacing: -1px;
+        }
+
+
+        /*.card-body {*/
+
+        /*    background-image: url("/images/company.JPG");*/
+        /*    height: 100%;*/
+        /*    background-repeat: no-repeat;*/
+        /*    background-size: cover;*/
+
+        /*}*/
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .colbar{
+            background-color: white;
+        }
+
+        .mytable {
+            border-collapse: collapse;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+        }
+        .mytable th, .mytable td {
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+        }
+
+
+
+
+
+
+    </style>
+
+    <script type="text/javascript">
+
+    </script>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+    <a class="navbar-brand m-2" href='/'>
+        <img src="/images/n_logo.png" width="40" height="40">
+    </a>
+
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">NEIGHBOR SYSTEM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/notice">공지사항</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        커뮤니티
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/boardCompany">사내 게시판</a></li>
+                        <li><a class="dropdown-item" href="/circles"> 동아리 </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/request">건의 사항</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/mypage"> 마이페이지 </a>
+                </li>
+
+            </ul>
+            <form class="d-flex">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<!-- 위에 목록 -->
+<!--세로 목록 -->
+
+<div class="row">
+    <div class="container col-1 colbar">
+        <div class="row">
+            <div class="col">
+                <p> 마이페이지 </p>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/mypage"> 내 정보 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/projectManage">프로젝트 관리 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/myboard">할일관리 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/change"> 정보변경 </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+        <!-- project manage 목록 -->
+    <div class="container col-10">
+
+        <section>
+            <div class = "search__box search_c">
+                <div class = "search__title"> <br>
+                    <h5>프로젝트 관리 </h5>
+                </div>
+                <table border ="1" class="table-striped  mytable" >
+                    <tr >
+                        <td  class="search__sub__title" width="100"> 등록기간  </td>
+                        <td width="350"> <input type="date" class="search__input"/>  ~  <input type="date" class="search__input" /> </td>
+
+
+                        <td  class = "search__sub__title" width="100"> 부서  </td>
+                        <td> <select class="search__input"  >
+                            <option> iot 통합 플랫폼팀 </option>
+                            <option> 국방지원팀 </option>
+                            <option> 부서3 </option>
+                        </select>
+                        </td>
+
+                        <td  class = "search__sub__title" width="100"> 사업명  </td>
+                        <td width = 250 >
+                            <input type="text" class="search__input" placeholder=" 네이버 시스템" /> </td>
+
+
+                    </tr>
+                    <tr>
+
+                        <td  class = "search__sub__title" width="100"> 업체명  </td>
+                        <td  >
+                            <input type="text" class="search__input" placeholder=" kt" /> </td>
+
+                        <td  class="search__sub__title" width="100"> 작업기간  </td>
+                        <td> <input type="date" class="search__input"/>  ~  <input type="date" class="search__input" /> </td>
+
+
+                        <td  class = "search__sub__title" width="100"> 작업 담당자  </td>
+                        <td colspan="1" >
+                            <input type="text" class="search__input" placeholder=" kt" /> </td>
+
+
+
+                    </tr>
+                    <tr>
+                    <td  class="search__sub__title"> 인원 </td>
+                    <td >
+                        <select class="search__input"  >
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select> </td>
+
+                    <td  class="search__sub__title"> 결재 상태  </td>
+                    <td >
+                        <select class="search__input"  >
+                            <option> 승인</option>
+                            <option>대기 </option>
+                            <option> 반려</option>
+                        </select> </td>
+
+                        <td  class = "search__sub__title" width="100"> 작업 번호  </td>
+                        <td colspan="1" >
+                            <input type="number" class="search__input" placeholder="1231" /> </td>
+
+
+
+                    </tr>
+
+
+
+                </table>
+             <div align = "right">
+                    <button class  = "  btn btn-outline-secondary active mr-3">검색 </button>
+             </div>
+            </div>
+
+
+        </section>
+
+<br>
+        <table class="table table-hover" >
+            <thead>
+            <tr align="center">
+                <th scope="col">NO</th>
+                <th scope="col">프로젝트 명</th>
+                <th scope="col">담당자</th>
+                <th scope="col">마감일</th>
+                <th scope="col">승인여부</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr align="center">
+                <th scope="row">1</th>
+                <td>무지개 프로젝트 (희망나눔 콘서트 )</td>
+                <td>김나나</td>
+                <td>2020.11.11</td>
+                <td> 0 </td>
+            </tr>
+            <tr align="center">
+                <th scope="row">2</th>
+                <td>아름다운 프로젝트</td>
+                <td>박뚜비</td>
+                <td>2020.1.14</td>
+                <td> 0 </td>
+            </tr>
+            <tr align="center">
+                <th scope="row">3</th>
+                <td>셀럽 프로젝트 (셀럽이 되고싶다 출연 )</td>
+                <td>라돌이</td>
+                <td> 2020.3.14</td>
+                <td> 0 </td>
+            </tr>
+            <tr align="center">
+                <th scope="row">4</th>
+                <td>오렌지 프로젝트</td>
+                <td>orangenana</td>
+                <td>2034.12.11</td>
+                <td> 0 </td>
+            </tr>
+            <tr align="center">
+                <th scope="row">5</th>
+                <td>집 프로젝틑</td>
+                <td>잠만보</td>
+                <td>2099.12.11</td>
+                <td> 0 </td>
+            </tr>
+            </tbody>
+        </table>
+        <div align = "right">
+            <div id="register-camera-modal"></div>
+            <button class  = "btn btn-outline-primary" data-toggle="modal"
+                    data-target="#camera-modal">등록 </button>
+        </div>
+
+        <div class="modal fade" id="camera-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <!-- <div class="modal-dialog modal-dialog-centered modal-lg modal-full-width"> -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="fill-primary-modalLabel">프로젝트 등록</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action="#" class="pl-5 pr-3 pb-3 ml-5">
+
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="form-group pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: right; align-items: center">
+                                        <label class="text-left"  style="width: 150px;">
+                                            부서
+                                        </label>
+                                        <select class="form-control" data-toggle="select2" title="event">
+                                            <option value="0" data-icon="">IOT 융합사업 본부</option>
+                                            <option value="AF">경영지원팀</option>
+                                            <option value="AL">국방사업본부</option>
+                                            <option value="DZ">빅데이터 플랫폼 사업본부 </option>
+                                            <option value="AS">국방 사업본부 </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group  pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: right; align-items: center">
+                                        <label class="text-left" style="width: 150px;">
+                                           프로젝트 명
+                                        </label>
+                                        <input class="form-control" type="text"  required=""
+                                               placeholder="">
+
+                                    </div>
+
+                                    <div class="form-group  pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: right; align-items: center">
+                                        <label class="text-left" style="width: 150px;">
+                                            작업 담당자
+                                        </label>
+                                        <input class="form-control" type="text"  required=""
+                                               placeholder="">
+
+                                    </div>
+
+
+                                    <div class="form-group  pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                        <label class="text-left" for="username7" style="width: 150px;">
+                                           업체명
+                                        </label>
+                                        <input class="form-control" type="text" id="username7" required=""
+                                               placeholder="kt">
+                                    </div>
+                                    <div class="form-group  pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                        <label class="text-left" for="username6" style="width: 150px;"> 투입 인원</label>
+                                        <input class="form-control" type="number" id="username6" required=""
+                                               placeholder="5">
+                                    </div>
+                                    <div class="col-10">
+                                    <div class="form-group  pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                        <label class="text-left" for="username5" style="width: 150px;"> 작업 위치</label>
+                                        <input class="form-control" type="email" id="username5" required=""
+                                               placeholder="송파구 중대로 135 IT벤처타워 동관 16층">
+                                    </div>
+
+
+
+
+
+                                    <div class="form-group  pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                        <label class="text-left" for="username1" style="width: 150px;">내용 </label>
+                                        <textarea class="form-control" type="text" id="username1" required=""
+                                               placeholder="프로젝트 내용을 입력하세요" rows="5" cols="30"> </textarea>
+                                    </div>
+
+                                    <div class="form-group  pb-2"
+                                         style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                        <label class="text-left"  style="width: 150px;">작업기간</label>
+
+                                        <input type="date" class="search__input"/>  ~  <input type="date" class="search__input" />
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="form-group "
+                                                     style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                                    <label class="text-left"
+                                                           style="width: 110px; margin-left: 10px;">
+                                                         승인 완료
+                                                    </label>
+                                                    <input type="checkbox"  checked data-switch="success" />
+                                                    <label for="switchf" data-on-label="On" data-off-label="Off"></label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <div class="form-group"
+                                                     style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                                                    <label class="text-left"
+                                                           style="width: 110px; margin-left: 10px;">
+                                                        public
+                                                    </label>
+                                                    <input type="checkbox" id="switchf" checked data-switch="success" />
+                                                    <label for="switchf" data-on-label="On" data-off-label="Off"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" style="width: 100px;">등록</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal"
+                                        style="width: 100px;">취소</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+
+
+
+    </div>
+</div>
+<br><br> <br><br>
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+<footer>
+    <div style="margin-bottom: 0">
+        <br>
+        Copyright © 2020 yoon.  서울특별시 송파구 중대로 135 IT벤처타워 동관 16층  TEL. 02-6258-1500 FAX.02-6258-0145
+
+    </div>
+
+</footer>
+
+<script type="text/javascript">
+
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <style>
+        footer {
+            font-family: Courier, "Courier New", "Andale Mono", monospace;
+            color: #0c0c0c;
+            font-size: 13px;
+        }
+        p {
+            margin: 20px 0px;
+        }
+
+        pre {
+            font-family: Courier, "Courier New", "Andale Mono", monospace;
+            color: #0c0c0c;
+            font-size: 11px;
+        }
+
+        footer {
+            background-color: #e8e6e6;
+        }
+
+        span {
+            color: #212121;
+            font-size: 32px;
+            text-align: left;
+            margin-top: 20px;
+            font-weight: 100;
+            letter-spacing: -1px;
+        }
+
+
+
+
+        h3 {
+            color: #44488d;
+            font-family: arial, sans-serif;
+            font-weight: bold;
+        }
+
+        span.system {
+            color: #bbbff3;
+            font-family: arial, sans-serif;
+            font-weight: bold;
+        }
+
+        span.introduce {
+            color: #0e1012;
+            font-family: Verdana, Geneva, Arial, sans-serif;
+        }
+
+        span {
+            font-family: Courier, "Courier New", "Andale Mono", monospace;
+            color: #0c0c0c;
+            font-size: 20px;
+        }
+
+        span.neighborsystem {
+            color: #3077dc;
+            font-family: Times, "Times New Roman", Georgia, serif;
+        }
+
+        pre.navnav {
+            font-size: 20px;
+            font-family: Times, "Times New Roman", Georgia, serif;
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+    <a class="navbar-brand m-2" href='/'>
+        <img src="/images/n_logo.png" width="40" height="40">
+    </a>
+
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">NEIGHBOR SYSTEM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                <a th:if="${session.principal != null}">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="/notice">공지사항</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            커뮤니티
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/boardCompany">사내 게시판</a></li>
+                            <li><a class="dropdown-item" href="/circles"> 동아리 </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/request">건의 사항</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mypage"> 마이페이지 </a>
+                    </li>
+                </a>
+
+            </ul>
+            <form class="d-flex">
+                <a th:if="${session.principal == null}">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link"
+                                                href="/auth/loginForm">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/auth/joinForm">회원가입</a>
+                        </li>
+                    </ul>
+                </a>
+
+                <a th:if="${session.principal != null}">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+                    </ul>
+                </a>
+
+
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<!-- 위에 목록 -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p> Do It Your NEXT </p>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home">회사소개</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="/introduce"> CEO 인사말</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!--회사 소개 내용 -->
+
+
+    <div class="row">
+
+        <div class="card-body col-7">
+
+            <br>
+            <br>
+
+            <h3 class="card-title">Neighbor <span class="system">system </span> <span
+                    class="introduce">Introduction</span></h3>
+            <br>
+            <hr>
+            <br>
+            <pre class="card-text">
+             <pre class="navnav">
+                 네이버시스템은 Mobile Solution 전문기업에서
+              <span class="neighborsystem">   통합 플랫폼 </span>은  기업으로
+                 한발 더 앞서나가고자 합니다.</pre>
+
+                 네이버시스템은 Mobile Solution 전문기업에서 통합 플랫폼 기업으로 한발 더 앞서나가고자 합니다
+                 첨단 기술로써 다가올 미래의 변화를 예측하고, 즐겁고 이로운 미래를 만듭니다.
+                 현재 2018년 12월기준 496명의 임직원이 근무하고 있으며
+                 2018년 12월 기준 매출액이 620억원으로 꾸준히 사세를 확장시켜 왔으며,
+                 S/W 분야의 초일류 선도기업으로서 대한민국의 성장에 크게 기여하고 있다고 자부합니다.
+
+                 네이버시스템㈜는 최근 시장의 화두인 빅데이터 사업부문과
+                 IoT 사업부문, GIS 및 LBS 사업부문으로 사업구조를 혁신하여,
+                 다양한 실적을 쌓으면서 첨단 초일류 기업으로의 자리매김을 충실히 진행하고 있습니다.</pre>
+
+
+            <br><br><br><br><br>
+
+
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class = "col-4">
+            <br><br><br><br><br><br><br>
+
+            <img src="/images/company.JPG"/>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+<footer>
+    <div style="margin-bottom: 0">
+        <br>
+        Copyright © yoonji.  서울특별시 송파구 중대로 135 IT벤처타워 동관 16층  TEL. 02-6258-1500 FAX.02-6258-0145
+
+    </div>
+
+</footer>
+
+<script type="text/javascript">
+
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+</body>
+</html>

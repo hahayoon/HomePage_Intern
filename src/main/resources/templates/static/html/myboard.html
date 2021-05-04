@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <style>
+        footer {
+            font-family: Courier, "Courier New", "Andale Mono", monospace;
+            color: #0c0c0c;
+            font-size: 13px;
+            background-color: #e8e6e6;
+        }
+
+        p {
+            margin: 20px 0px;
+        }
+
+
+
+        span {
+            color: #efebeb;
+            font-size: 32px;
+            text-align: left;
+            margin-top: 20px;
+            font-weight: 100;
+            letter-spacing: -1px;
+        }
+
+
+        /*.card-body {*/
+
+        /*    background-image: url("/images/company.JPG");*/
+        /*    height: 100%;*/
+        /*    background-repeat: no-repeat;*/
+        /*    background-size: cover;*/
+
+        /*}*/
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .colbar{
+            background-color: white;
+        }
+
+
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#add-usr-modal").load("./modal/insert.html");   // 사용자 등록
+            $("#edit-usr-modal").load("./modal/user/editUsrModal.html"); // 사용자 정보수정
+            $("#del-usr-modal").load("./modal/user/delUsrModal.html");   // 사용자 정보삭제
+        });
+    </script>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+    <a class="navbar-brand m-2" href='/'>
+        <img src="/images/n_logo.png" width="40" height="40">
+    </a>
+
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">NEIGHBOR SYSTEM</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/notice">공지사항</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        커뮤니티
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/boardCompany">사내 게시판</a></li>
+                        <li><a class="dropdown-item" href="/circles"> 동아리 </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/request">건의 사항</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/mypage"> 마이페이지 </a>
+                </li>
+
+            </ul>
+            <form class="d-flex">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<!-- 위에 목록 -->
+<!--세로 목록 -->
+
+<div class="row">
+    <div class="container col-1 colbar">
+        <div class="row">
+            <div class="col">
+                <p> 마이페이지 </p>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/mypage"> 내 정보 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/projectManage">프로젝트 관리 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/myboard">할일관리 </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/change"> 정보변경 </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- todo 목록 -->
+    <div class="container col-10">
+        <div class="row">
+            <div class="col-4">
+
+                <div class="tasks">
+                    <div class="card mt-4 " style="width: 25rem;">
+                        <div class="card-header mb-4 text-center">
+                            TODO
+                        </div>
+
+                        <ul class="list-group list-group-flush text-center  align-content-center"
+                            style="padding-left: 45px;">
+                            <li>
+                                <div class="card border-success mb-3 " style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent border-success">삼천리 </div>
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title">삼천리 테스트</h5>
+                                        <p class="card-text">삼천리 단위케이스 작성 밑 통합테스트 작성,  테스트 케이스 하고 잘되는지 여부도 체크하기</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success">2020.12.31</div>
+                                </div>
+                            </li>
+
+                            <br>
+
+                            <li>
+                                <div class="card border-success mb-3 " style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent border-success">세미나</div>
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title">spring boot 세미나 준비</h5>
+                                        <p class="card-text">스프링 부트로 세미나를 해보도롣 하겠습니다. 스프링부트 세큐리티 로그인 등등 여러가지기능이있지요 </p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success">Footer</div>
+                                </div>
+                            </li>
+
+                            <br>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+
+                <div class="tasks">
+                    <div class="card mt-4 " style="width: 25rem;">
+                        <div class="card-header mb-4 text-center">
+                            IN PROGRESS
+                        </div>
+
+                        <ul class="list-group list-group-flush text-center  align-content-center"
+                            style="padding-left: 45px;">
+                            <li>
+                                <div class="card border-success mb-3 " style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent border-success">AR  </div>
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title">AR 웹 작성</h5>
+                                        <p class="card-text">삼천리 단위케이스 작성 밑 통합테스트 작성,  테스트 케이스 하고 잘되는지 여부도 체크하기</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success">2020.12.31</div>
+                                </div>
+                            </li>
+
+                            <br>
+
+                            <li>
+                                <div class="card border-success mb-3 " style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent border-success">세미나</div>
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title">spring boot 세미나 준비</h5>
+                                        <p class="card-text">스프링 부트로 세미나를 해보도롣 하겠습니다. 스프링부트 세큐리티 로그인 등등 여러가지기능이있지요 </p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success">Footer</div>
+                                </div>
+                            </li>
+
+                            <br>
+                            <li>
+                                <div class="card border-success mb-3 " style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent border-success">SPRINGFRAMEWORK</div>
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title">SPRINGFRAMEWORK TODOLOST 만들기</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up the bulk of
+                                            the card's content.</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success">Footer</div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="tasks">
+                    <div class="card mt-4 mr-lg-4 " style="width: 25rem;">
+                        <div class="card-header mb-4 text-center">
+                          complete
+                        </div>
+
+                        <ul class="list-group list-group-flush text-center  align-content-center"
+                            style="padding-left: 45px;">
+                            <li>
+                                <div class="card border-success mb-3 " style="max-width: 18rem;">
+                                    <div class="card-header bg-transparent border-success">VUE.JS</div>
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title">VUE.JS TODOLOST 만들기</h5>
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up the bulk of
+                                            the card's content.</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success">Footer</div>
+                                </div>
+                            </li>
+
+                            <br>
+
+                            <br>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div id="add-usr-modal"></div>
+        <div id="edit-usr-modal"></div>
+        <div id="del-usr-modal"></div>
+        <div class="col-5 justify-content-end">
+            <div class="text-lg-right">
+                <button type="button" class="btn btn-danger"
+                        data-toggle="modal"
+                        data-target="#camera-modal">등록</button>
+                <button type="button" class="btn btn-secondary"
+                        data-toggle="modal"
+                        data-target="#camera-modal2">수정</button>
+                <button type="button" class="btn btn-secondary"
+                        data-toggle="modal"
+                        data-target="#standard-modal1">삭제</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+<footer>
+    <div style="margin-bottom: 0">
+        <br>
+        Copyright © 2015 Neighbor System.  서울특별시 송파구 중대로 135 IT벤처타워 동관 16층  TEL. 02-6258-1500 FAX.02-6258-0145  created by yoonji
+
+    </div>
+
+</footer>
+
+<script type="text/javascript">
+
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+        integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+        crossorigin="anonymous"></script>
+</body>
+</html>
